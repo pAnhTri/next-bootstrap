@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "@mantine/core/styles.css";
 import "./globals.css";
 
 import {
@@ -20,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" {...mantineHtmlProps}>
       <head>
-        <ColorSchemeScript />
+        <ColorSchemeScript suppressHydrationWarning />
       </head>
       <body>
         <MantineProvider>{children}</MantineProvider>
