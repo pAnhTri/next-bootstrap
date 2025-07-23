@@ -15,11 +15,12 @@ A comprehensive, production-ready Next.js template with modern tooling and best 
 - **[clsx + tailwind-merge](https://github.com/lukeed/clsx)** - Conditional classes utility
 
 ### Database & Backend
-- **[Mongoose](https://mongoosejs.com/)** - MongoDB object modeling
-- **[MongoDB](https://www.mongodb.com/)** - NoSQL database (ready to connect)
+- **[Prisma](https://www.prisma.io/)** – Type-safe ORM for PostgreSQL
+- **[PostgreSQL](https://www.postgresql.org/)** – Relational database
 
 ### State Management & Forms
 - **[Zustand](https://zustand-demo.pmnd.rs/)** - Lightweight state management
+- **[SWR](https://swr.vercel.app/)** - React Hooks for remote data fetching
 - **[React Hook Form](https://react-hook-form.com/)** - Performant forms with validation
 - **[Zod](https://zod.dev/)** - TypeScript-first schema validation
 
@@ -38,6 +39,7 @@ A comprehensive, production-ready Next.js template with modern tooling and best 
 ### Prerequisites
 - Node.js 18+ 
 - npm, yarn, pnpm, or bun
+- PostgreSQL database (local or cloud)
 
 ### Installation
 
@@ -62,9 +64,18 @@ A comprehensive, production-ready Next.js template with modern tooling and best 
    ```bash
    cp .env.example .env.local
    ```
-   Configure your MongoDB connection string and other environment variables.
+   Configure your PostgreSQL connection string in `.env.local` as `DATABASE_URL`.
 
-4. **Run the development server:**
+4. **Set up Prisma (required for database access):**
+   - This template does not include a pre-configured Prisma schema or client. To get started with Prisma, follow the official documentation:
+     - [Prisma Getting Started Guide](https://www.prisma.io/docs/getting-started)
+   - Run the following command to initialize Prisma in your project:
+     ```bash
+     npx prisma init
+     ```
+   - Then, define your own schema and run migrations as needed for your use case.
+
+5. **Run the development server:**
    ```bash
    npm run dev
    # or
@@ -84,7 +95,6 @@ src/
 ├── app/                    # Next.js App Router pages
 ├── lib/
 │   ├── jest/              # Testing utilities
-│   ├── mongoDB/           # Database connection & models
 │   ├── utils/             # Utility functions (cn, etc.)
 │   ├── zod/               # Zod schemas
 │   └── zustand/           # State management stores
@@ -117,12 +127,16 @@ Use the `cn()` utility function for combining Tailwind classes:
 ```tsx
 import { cn } from "@/lib/utils/cn";
 
-<div className={cn("base-classes", conditional && "conditional-classes")}>
+<div className={cn("base-classes", conditional && "conditional-classes")}> 
 ```
 
 ## 🗄️ Database
 
-MongoDB connection is configured in `src/lib/mongoDB/dbConnect.ts`. Create your models in the `mongoDB` directory.
+This template does not include a pre-configured Prisma schema or client. To use PostgreSQL with Prisma:
+- Run `npx prisma init` to set up Prisma in your project.
+- Define your own schema in `prisma/schema.prisma`.
+- Set your database connection string in `.env.local` as `DATABASE_URL`.
+- Refer to the [Prisma documentation](https://www.prisma.io/docs/) for full setup and usage instructions.
 
 ## 📦 Available Scripts
 
@@ -144,7 +158,9 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - [Next.js Documentation](https://nextjs.org/docs)
 - [Mantine Documentation](https://mantine.dev/getting-started/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [Mongoose Documentation](https://mongoosejs.com/docs/)
+- [Prisma Documentation](https://www.prisma.io/docs)
+- [PostgreSQL Documentation](https://www.postgresql.org/docs/)
+- [SWR Documentation](https://swr.vercel.app/docs)
 - [Zustand Documentation](https://github.com/pmndrs/zustand)
 - [React Hook Form Documentation](https://react-hook-form.com/docs)
 - [Zod Documentation](https://zod.dev/)
