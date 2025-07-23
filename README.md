@@ -38,6 +38,7 @@ A comprehensive, production-ready Next.js template with modern tooling and best 
 ### Prerequisites
 - Node.js 18+ 
 - npm, yarn, pnpm, or bun
+- MongoDB database (local or cloud)
 
 ### Installation
 
@@ -62,7 +63,7 @@ A comprehensive, production-ready Next.js template with modern tooling and best 
    ```bash
    cp .env.example .env.local
    ```
-   Configure your MongoDB connection string and other environment variables.
+   Configure your MongoDB connection string in `.env.local` as `MONGODB_URI`.
 
 4. **Run the development server:**
    ```bash
@@ -117,12 +118,12 @@ Use the `cn()` utility function for combining Tailwind classes:
 ```tsx
 import { cn } from "@/lib/utils/cn";
 
-<div className={cn("base-classes", conditional && "conditional-classes")}>
+<div className={cn("base-classes", conditional && "conditional-classes")}> 
 ```
 
 ## 🗄️ Database
 
-MongoDB connection is configured in `src/lib/mongoDB/dbConnect.ts`. Create your models in the `mongoDB` directory.
+MongoDB connection is configured in `src/lib/mongoDB/dbConnect.ts`. Create your Mongoose models in the `mongoDB` directory. Set your connection string in `.env.local` as `MONGODB_URI`.
 
 ## 📦 Available Scripts
 
@@ -145,6 +146,7 @@ Check out the [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - [Mantine Documentation](https://mantine.dev/getting-started/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [Mongoose Documentation](https://mongoosejs.com/docs/)
+- [MongoDB Documentation](https://www.mongodb.com/docs/)
 - [Zustand Documentation](https://github.com/pmndrs/zustand)
 - [React Hook Form Documentation](https://react-hook-form.com/docs)
 - [Zod Documentation](https://zod.dev/)
